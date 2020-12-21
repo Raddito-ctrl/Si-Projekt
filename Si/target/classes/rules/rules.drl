@@ -1,0 +1,586 @@
+package com.sample
+import javax.swing.JOptionPane
+import javax.swing.JFrame
+import org.kie.api.runtime.KieRuntime
+import javax.swing.JRadioButton
+import javax.swing.JPanel
+global JFrame frame
+global javax.swing.JTextArea textArea
+import java.util.ArrayList
+import java.util.List
+import java.util.Arrays;
+import java.util.ArrayList
+import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.sample.Answer;
+
+
+//zasady
+rule "Are you alone?"
+    when
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you alone?", choices);
+    insert (answer);
+end
+
+rule "Are you alone? - Yes - Are you at home?"
+    when
+    Answer(question == "Are you alone?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you at home?", choices);
+    insert (answer);
+end
+
+rule "Are you at home? - Yes - Are you on the phone?"
+    when
+    Answer(question == "Are you at home?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you on the phone?", choices);
+    insert (answer);
+end
+
+rule "Are you on the phone? - Yes - Stabbed to death by Ghostface (Scream)"
+    when
+    Answer(question == "Are you on the phone?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Stabbed to death by Ghostface (Scream)");
+end
+
+
+rule "Are you on the phone? - No - Are you asleep?"
+    when
+    Answer(question == "Are you on the phone?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you asleep?", choices);
+    insert (answer);
+end
+
+rule "Are you asleep? - Yes - Murdered in your dream (Nightmare on elm street)"
+    when
+    Answer(question == "Are you asleep?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Murdered in your dream (Nightmare on elm street)");
+end
+
+
+rule "Are you asleep? - No - Are you babysitting?"
+    when
+    Answer(question == "Are you asleep?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("NO");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you babysitting?", choices);
+    insert (answer);
+end
+
+rule "Are you babysitting? - Yes - Stabbed to death by Michael Myers (Halloween)"
+    when
+    Answer(question == "Are you babysitting?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Stabbed to death by Michael Myers (Halloween)");
+end
+
+
+rule "Are you babysitting? - NO - Are you watching VHS Tape?"
+    when
+    Answer(question == "Are you babysitting?" && answer == "NO")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you watching VHS Tape?", choices);
+    insert (answer);
+end
+
+rule "Are you watching VHS Tape? - Yes - Mysteriously die 7 days later (The Ring)"
+    when
+    Answer(question == "Are you watching VHS Tape?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Mysteriously die 7 days later (The Ring)");
+end
+
+
+rule "Are you watching VHS Tape? - No - You have netflix and all is well"
+    when
+    Answer(question == "Are you watching VHS Tape?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "You have netflix and all is well");
+end
+
+
+rule "Are you at home? - No - Are you in a hotel?"
+    when
+    Answer(question == "Are you at home?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a hotel?", choices);
+    insert (answer);
+end
+
+rule "Are you in a hotel? - Yes - Are you in the shower?"
+    when
+    Answer(question == "Are you in a hotel?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in the shower?", choices);
+    insert (answer);
+end
+
+rule "Are you in the shower? - Yes - Stabbed to death in your birthdaysuit (Psycho)"
+    when
+    Answer(question == "Are you in the shower?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Stabbed to death in your birthdaysuit (Psycho)");
+end
+
+
+rule "Are you in the shower? - No - Stuck for eternity in a haunted hotel room (1408)"
+    when
+    Answer(question == "Are you in the shower?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Stuck for eternity in a haunted hotel room (1408)");
+end
+
+
+rule "Are you in a hotel? - No - Are you in a hedge maze?"
+    when
+    Answer(question == "Are you in a hotel?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a hedge maze?", choices);
+    insert (answer);
+end
+
+rule "Are you in a hedge maze? - Yes - You freeze to death while chasing your son (The shining)"
+    when
+    Answer(question == "Are you in a hedge maze?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "You freeze to death while chasing your son (The shining)");
+end
+
+
+rule "Are you in a hedge maze? - No - Were you seperated from your group?"
+    when
+    Answer(question == "Are you in a hedge maze?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Were you seperated from your group?", choices);
+    insert (answer);
+end
+
+rule "Were you seperated from your group? - Yes - Well. You're as good as dead. See every horror movie ever!"
+    when
+    Answer(question == "Were you seperated from your group?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Well. You're as good as dead. See every horror movie ever!");
+end
+
+
+rule "Are you alone? - No - Are you in a city?"
+    when
+    Answer(question == "Are you alone?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a city?", choices);
+    insert (answer);
+end
+
+rule "Are you in a city? - Yes - Are you in a mall?"
+    when
+    Answer(question == "Are you in a city?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a mall?", choices);
+    insert (answer);
+end
+
+rule "Are you in a mall? - No - Are you partying on a rooftop?"
+    when
+    Answer(question == "Are you in a mall?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you partying on a rooftop?", choices);
+    insert (answer);
+end
+
+rule "Are you partying on a rooftop? - Yes - Eaten alive by an alien( Cloverfield)"
+    when
+    Answer(question == "Are you partying on a rooftop?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Eaten alive by an alien( Cloverfield)");
+end
+
+
+rule "Are you partying on a rooftop? - No - Ripped to shreds by zombies (28 days later)"
+    when
+    Answer(question == "Are you partying on a rooftop?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Ripped to shreds by zombies (28 days later)");
+end
+
+
+rule "Are you in a mall? - Yes - Is there a zombie apocalupse raging outside?"
+    when
+    Answer(question == "Are you in a mall?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Is there a zombie apocalupse raging outside?", choices);
+    insert (answer);
+end
+
+rule "Is there a zombie apocalupse raging outside? - Yes - Cornered by zombies and turned into the undead (Dawn of the dead)"
+    when
+    Answer(question == "Is there a zombie apocalupse raging outside?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Cornered by zombies and turned into the undead (Dawn of the dead)");
+end
+
+
+rule "Is there a zombie apocalupse raging outside? - No - Murdered by killbots while partying (Chopping mall)"
+    when
+    Answer(question == "Is there a zombie apocalupse raging outside?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Murdered by killbots while partying (Chopping mall)");
+end
+
+
+rule "Are you in a city? - No - Are you in the woods?"
+    when
+    Answer(question == "Are you in a city?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in the woods?", choices);
+    insert (answer);
+end
+
+rule "Are you in the woods? - Yes - Are you in a cabin?"
+    when
+    Answer(question == "Are you in the woods?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a cabin?", choices);
+    insert (answer);
+end
+
+rule "Are you in a cabin? - Yes - UH.OH! Well. What are you ding?"
+    when
+    Answer(question == "Are you in a cabin?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("At camp");
+    choices.add("Partying with my friends");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "UH.OH! Well. What are you ding?", choices);
+    insert (answer);
+end
+
+rule "UH.OH! Well. What are you ding? - Yes - At camp"
+    when
+    Answer(question == "UH.OH! Well. What are you ding?" && answer == "At camp")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you having sex?", choices);
+    insert (answer);
+end
+
+rule "At camp - Are you having sex? - Decapitated by a redneck zombie"
+    when
+    Answer(question == "UH.OH! Well. What are you ding?" && answer == "At camp") && Answer(question == "Are you having sex?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Decapitated by a redneck zombie (Cabin in the woods)");
+end
+rule "At camp - Are you having sex? - No - The world ends thanks to you! (Cabin in the woods)"
+    when
+    Answer(question == "Are you having sex?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "The world ends thanks to you! (Cabin in the woods)");
+end
+
+
+rule "UH.OH! Well. What are you ding? - Yes - Partying with my fiends"
+    when
+    Answer(question == "UH.OH! Well. What are you ding?" && answer == "Partying with my friends")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Did you find a book of the dead?", choices);
+    insert (answer);
+end
+
+rule "Partying with my fiends - Yes - Did you find a book of the dead?"
+    when
+    Answer(question == "Partying with my fiends" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Did you find a book of the dead?", choices);
+    insert (answer);
+end
+
+rule "Did you find a book of the dead? - Yes - Dismembered by an axe (The evil dead)"
+    when
+    Answer(question == "Did you find a book of the dead?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Dismembered by an axe (The evil dead)");
+end
+
+
+rule "Did you find a book of the dead? - No - Are you having sex?"
+    when
+    Answer(question == "Did you find a book of the dead?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you having sex?", choices);
+    insert (answer);
+end
+
+rule "Did you find a book of the dead? - No - Are you having sex? - Yes - Impaled during intercourse (Friday the 13TH II)"
+    when
+    Answer(question == "Did you find a book of the dead?" && answer == "No") && Answer(question == "Are you having sex?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Impaled during intercourse (Friday the 13TH II)");
+end
+
+
+rule "Are you having sex? - No - You get your head chopped off(Friday the 13TH)"
+    when
+    Answer(question == "Did you find a book of the dead?" && answer == "No") && Answer(question == "Are you having sex?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "You get your head chopped off(Friday the 13TH)");
+end
+
+
+rule "Are you in a cabin? - No - Are you filming everything?"
+    when
+    Answer(question == "Are you in a cabin?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you filming everything?", choices);
+    insert (answer);
+end
+
+rule "Are you filming everything? - Yes - Die of mysterious cirumstances (The balir witch project)"
+    when
+    Answer(question == "Are you filming everything?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Die of mysterious cirumstances (The balir witch project)");
+end
+
+
+rule "Are you filming everything? - No - Killed with a strip of barbed wire (Wrong Turn)"
+    when
+    Answer(question == "Are you filming everything?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Killed with a strip of barbed wire (Wrong Turn)");
+end
+
+
+rule "Are you in the woods? - No - Are you on the road?"
+    when
+    Answer(question == "Are you in the woods?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you on the road?", choices);
+    insert (answer);
+end
+
+rule "Are you on the road? - Yes - Did your car get run off the road?"
+    when
+    Answer(question == "Are you on the road?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Did your car get run off the road?", choices);
+    insert (answer);
+end
+
+rule "Did your car get run off the road? - Yes - Your eyes are ripped out by a creeper (Jeepers Creepers)"
+    when
+    Answer(question == "Did your car get run off the road?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Your eyes are ripped out by a creeper (Jeepers Creepers)");
+end
+
+
+rule "Did your car get run off the road? - No - Did you take a side trip?"
+    when
+    Answer(question == "Did your car get run off the road?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Did you take a side trip?", choices);
+    insert (answer);
+end
+
+rule "Did you take a side trip? - Yes - Impaled by a meat hook (The Tezas Chainsaw Massacre)"
+    when
+    Answer(question == "Did you take a side trip?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Impaled by a meat hook (The Tezas Chainsaw Massacre)");
+end
+
+
+
+rule "Did you take a side trip? - No - You stop overnight and get turned into a merman (House of 1,000 Corpses)"
+    when
+    Answer(question == "Did you take a side trip?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "You stop overnight and get turned into a merman (House of 1,000 Corpses)");
+end
+
+
+
+rule "Are you on the road? - No - Are you in a house?"
+    when
+    Answer(question == "Are you on the road?" && answer == "No")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Are you in a house?", choices);
+    insert (answer);
+end
+
+
+rule "Are you in a house? - Yes - Was there a murder in the house?"
+    when
+    Answer(question == "Are you in a house?" && answer == "Yes")
+    then
+    ArrayList<String> choices = new ArrayList<>();
+    choices.add("Yes");
+    choices.add("No");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Was there a murder in the house?", choices);
+    insert (answer);
+end
+
+
+rule "Was there a murder in the house? - Yes - Driven out of the house by murderous ghosts (The amityville horror)"
+    when
+    Answer(question == "Was there a murder in the house?" && answer == "Yes")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "Driven out of the house by murderous ghosts (The amityville horror)");
+end
+
+
+
+rule "Was there a murder in the house? - No - No murders or burial ground? Talk about great resale value! You survived!"
+    when
+    Answer(question == "Was there a murder in the house?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "No murders or burial ground? Talk about great resale value! You survived!");
+end
+
+
+
+rule "Are you in a house? - No - You've avoided enough cliches to make it out of this alive!"
+    when
+    Answer(question == "Are you in a house?" && answer == "No")
+    then
+    Endgame(frame, kcontext.getKieRuntime(), "You've avoided enough cliches to make it out of this alive!");
+end
+
+
+
+// Obs³uga
+
+
+function Answer ask(JFrame frame, KieRuntime krt, String Info, ArrayList answers) {
+    class Listener implements ItemListener {
+        private Answer answer;
+        private String chosen;
+        public Listener(Answer answ, String choice) {
+            this.answer = answ;
+            this.chosen = choice;
+        }
+        @Override
+        public void itemStateChanged(ItemEvent event) {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                answer.setAnswer(chosen);
+            }
+        }
+    }
+    Answer answer = new Answer(Info, (String) answers.get(0));
+
+    final JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel(Info));
+    ArrayList < JRadioButton > ButtonArray = new ArrayList < > ();
+    for (int i = 0; i < answers.size(); i++) {
+        String text = (String) answers.get(i);
+        JRadioButton nowy = new JRadioButton(text);
+        Listener newListener = new Listener(answer, text);
+        nowy.addItemListener(newListener);
+        ButtonArray.add(nowy);
+    }
+
+
+
+
+    ButtonArray.get(0).setSelected(true);
+    answer.setAnswer((String) answers.get(0));
+
+
+
+
+    ButtonGroup group = new ButtonGroup();
+    for (int i = 0; i < ButtonArray.size(); i++) {
+        group.add(ButtonArray.get(i));
+        panel.add(ButtonArray.get(i));
+    }
+
+    if (JOptionPane.showConfirmDialog(frame, panel, "Question", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE) < 0) {
+        answer.setAnswer("");
+    }
+    return answer;
+}
+
+function void Endgame(JFrame frame, KieRuntime krt, String ends) {
+    final JPanel panel = new JPanel();
+    String text = ends;
+    panel.add(new JLabel(text));
+    JOptionPane.showMessageDialog(frame, panel);
+}
